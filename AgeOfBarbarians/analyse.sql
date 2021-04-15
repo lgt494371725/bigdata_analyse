@@ -10,8 +10,8 @@ select count(1) as total, count(distinct user_id) as users
 from age_of_barbarians
 
 -- PU ( Paying Users）：付费用户总量
-select sum(case when pay_price > 0 then 1 else 0 end) as `付费用户`,
-       sum(case when pay_price > 0 then 0 else 1 end) as `非付费用户`
+select sum(if(pay_price > 0,1,0)) as `付费用户`,
+       sum(if(pay_price > 0,0,1)) as `非付费用户`
 from age_of_barbarians
 
 -- DNU（Daily New Users）： 每日游戏中的新登入用户数量，即每日新用户数。
